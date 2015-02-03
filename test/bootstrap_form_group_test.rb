@@ -208,6 +208,11 @@ class BootstrapFormGroupTest < ActionView::TestCase
     assert_equal expected, @builder.email_field(:misc, icon: 'ok')
   end
 
+  test "adding an fa icon to a field" do
+    expected = %{<div class="form-group has-feedback"><label class="control-label" for="user_misc">Misc</label><input class="form-control" id="user_misc" name="user[misc]" type="email" /><i class="fa fa-ok form-control-feedback"></span></div>}
+    assert_equal expected, @builder.email_field(:misc, fa_icon: 'ok')
+  end
+
   test "single form_group call in horizontal form should not be smash design" do
     output = ''
     output = @horizontal_builder.form_group do
