@@ -186,6 +186,7 @@ module BootstrapForm
         control = capture(&block).to_s
         control.concat(generate_help(name, options[:help]).to_s)
         control.concat(generate_icon(options[:icon])) if options[:icon]
+        control.concat(generate_fa_icon(options[:fa_icon])) if options[:fa_icon]
 
         if get_group_layout(options[:layout]) == :horizontal
           control_class = (options[:control_col] || control_col.clone)
@@ -362,6 +363,10 @@ module BootstrapForm
 
     def generate_icon(icon)
       content_tag(:span, "", class: "glyphicon glyphicon-#{icon} form-control-feedback")
+    end
+
+    def generate_fa_icon(icon)
+      content_tag(:i, "", class: "fa fa-#{icon} form-control-feedback")
     end
 
     def get_error_messages(name)
